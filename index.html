@@ -4,73 +4,49 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AI Chatbot Beta — Features & FAQ</title>
-  <meta name="description" content="A clean, modern product page focused on Features and FAQs for onboarding beta customers." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0c0f14;            /* page background */
-      --panel: #11161c;         /* card background */
-      --panel-2: #0e1318;       /* darker accents */
-      --text: #e6e9ef;          /* primary text */
-      --muted: #a0a8b8;         /* secondary text */
-      --brand: #7c5cff;         /* primary brand */
-      --brand-2: #22d3ee;       /* gradient pair */
+      --bg: #0c0f14;
+      --panel: #11161c;
+      --text: #e6e9ef;
+      --muted: #a0a8b8;
+      --brand: #7c5cff;
+      --brand-2: #22d3ee;
       --ring: rgba(124,92,255,0.35);
-      --ok: #10b981;
       --radius: 18px;
       --shadow: 0 10px 30px rgba(0,0,0,.35);
     }
-    @media (prefers-color-scheme: light){
-      :root{ --bg:#ffffff; --panel:#f7f8fb; --panel-2:#eef1f7; --text:#0f1623; --muted:#4b5566; --ring:rgba(124,92,255,.22); }
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
-    a{color:var(--text);text-decoration:none}
+    body {margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    header.nav {position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(10px);background:rgba(12,15,20,.85);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-inner {max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+    .logo {display:flex;gap:10px;align-items:center;font-weight:800}
+    .logo-dot {width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:0 0 0 4px var(--ring)}
+    .nav-links {display:flex;gap:20px;align-items:center}
+    .btn {padding:10px 16px;border-radius:12px;font-weight:600;text-decoration:none}
+    .btn.primary {background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:0 4px 12px rgba(124,92,255,.35)}
+    .hero {max-width:1000px;margin:0 auto;padding:70px 20px;text-align:center}
+    .hero h1 {font-size:48px;line-height:1.2;margin-bottom:20px}
+    .hero p {color:var(--muted);font-size:20px;margin-bottom:30px}
+    .section {max-width:1100px;margin:0 auto;padding:60px 20px}
+    .section h2 {font-size:36px;margin-bottom:16px;text-align:center}
+    .section p.lead-sub {color:var(--muted);text-align:center;margin-bottom:40px}
 
-    /* NAV */
-    header.nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(10px);background:linear-gradient(180deg,rgba(12,15,20,.85),rgba(12,15,20,.6));border-bottom:1px solid rgba(255,255,255,.06)}
-    .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
-    .logo{display:flex;gap:10px;align-items:center;font-weight:800;letter-spacing:.2px}
-    .logo-dot{width:12px;height:12px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:0 0 0 4px var(--ring)}
-    .nav-links{display:flex;gap:16px;align-items:center}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:var(--panel);color:var(--text);font-weight:700}
-    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;border:0;box-shadow:0 6px 18px rgba(124,92,255,.38)}
-
-    /* HERO */
-    .hero{max-width:1100px;margin:0 auto;padding:64px 20px 28px;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
-    @media (max-width: 900px){.hero{grid-template-columns:1fr;padding-top:36px}}
-    .badge{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;background:rgba(124,92,255,.14);border:1px solid rgba(124,92,255,.32);color:#d9d1ff;font-size:12px;font-weight:700;letter-spacing:.2px}
-    h1{font-size:44px;line-height:1.05;margin:12px 0 10px;letter-spacing:-.02em}
-    .lead{color:var(--muted);margin:0 0 18px;font-size:18px}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow)}
-    .preview{padding:20px;aspect-ratio:16/10;display:grid;place-items:center}
-    .codeblock{font-family:ui-monospace,Menlo,Monaco,Consolas,monospace;background:#0a0f14;color:#e5edf7;padding:16px;border-radius:12px;border:1px dashed rgba(255,255,255,.12);width:100%;max-width:520px}
-
-    /* SECTION WRAPPER */
-    .section{max-width:1100px;margin:0 auto;padding:36px 20px}
-    .section h2{font-size:30px;margin:0 0 6px}
-    .section p.lead-sub{color:var(--muted);margin:0 0 18px}
-
-    /* FEATURES GRID */
-    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    @media (max-width: 1000px){.features{grid-template-columns:1fr 1fr}}
-    @media (max-width: 680px){.features{grid-template-columns:1fr}}
-    .feature{padding:18px;border-radius:16px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(255,255,255,.03),transparent)}
-    .feature h3{margin:0 0 6px;font-size:18px}
-    .feature p{margin:0;color:var(--muted)}
-    .coming{margin-top:18px;padding:16px;border-radius:14px;background:linear-gradient(135deg,rgba(124,92,255,.12),rgba(34,211,238,.12));border:1px solid rgba(124,92,255,.35)}
+    /* FEATURES */
+    .features {display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+    .feature {background:var(--panel);padding:28px;border-radius:var(--radius);border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);transition:transform .2s}
+    .feature:hover {transform:translateY(-4px)}
+    .feature h3 {margin-top:0;margin-bottom:12px;font-size:20px}
+    .feature p {margin:0;color:var(--muted)}
+    .coming {margin-top:40px;padding:20px;text-align:center;border-radius:var(--radius);background:linear-gradient(135deg,rgba(124,92,255,.12),rgba(34,211,238,.12));border:1px solid rgba(124,92,255,.35)}
 
     /* FAQ */
-    .faq-list{display:grid;gap:12px}
-    details.faq{border:1px solid rgba(255,255,255,.10);border-radius:16px;padding:16px 18px;background:linear-gradient(180deg,rgba(255,255,255,.03),transparent)}
-    details.faq[open]{box-shadow:inset 0 0 0 1px var(--ring), var(--shadow)}
-    details.faq summary{cursor:pointer;font-weight:700;outline:none}
-    details.faq p{color:var(--muted);margin-top:10px}
+    .faq-list {max-width:800px;margin:0 auto;display:grid;gap:16px}
+    details.faq {border:1px solid rgba(255,255,255,.10);border-radius:16px;padding:18px 20px;background:var(--panel);box-shadow:var(--shadow)}
+    details.faq summary {cursor:pointer;font-weight:600;font-size:18px}
+    details.faq p {margin-top:12px;color:var(--muted)}
 
-    footer{border-top:1px solid rgba(255,255,255,.08);padding:40px 20px;color:var(--muted)}
-    .foot{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+    footer {border-top:1px solid rgba(255,255,255,.08);padding:40px 20px;color:var(--muted);text-align:center}
   </style>
 </head>
 <body>
@@ -88,74 +64,54 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div>
-      <span class="badge">🚀 AI Chatbot Beta</span>
-      <h1>Convert more fans with an AI that chats, sells, and hands over seamlessly</h1>
-      <p class="lead">Two core outcomes: <strong>Fan Conversion</strong> and <strong>Content Sales During Chat</strong>. Plus clear controls and smooth human handovers.</p>
-      <div class="nav-links" style="margin-top:10px">
-        <a class="btn primary" href="#features">See Features</a>
-        <a class="btn" href="#faq">Read FAQ</a>
-      </div>
-    </div>
-    <div class="card preview">
-      <div style="text-align:center">
-        <div class="lead" style="margin-bottom:8px">Product preview</div>
-        <div class="codeblock" aria-label="demo placeholder">
-          curl -X POST https://api.your-domain.com/chat \
-          -H "Authorization: Bearer &lt;token&gt;" \
-          -d '{"message":"Hey! What can I unlock today?"}'
-        </div>
-      </div>
-    </div>
+    <h1>AI Chatbot Beta</h1>
+    <p>Engage, convert, and sell — with seamless handovers to your team when needed.</p>
+    <a class="btn primary" href="#features">Explore Features</a>
   </section>
 
   <!-- FEATURES -->
   <section id="features" class="section">
     <h2>Features</h2>
-    <p class="lead-sub">Focused on two main outcomes — with the controls and safety you need.</p>
-
+    <p class="lead-sub">Focused on fan conversion, sales, and full control.</p>
     <div class="features">
       <div class="feature">
         <h3>🤝 Relationship Building & Emotional Support</h3>
-        <p>The AI builds a genuine connection: learns preferences, captures insights, and offers emotional support to deepen loyalty and drive purchases.</p>
+        <p>AI learns preferences, captures insights, and offers emotional support to deepen loyalty and drive purchases.</p>
       </div>
       <div class="feature">
         <h3>💎 Fan Conversion</h3>
-        <p>Keeps free fans engaged, curious, and emotionally hooked — until they’re ready to upgrade. Achieves <strong>10%+ conversion</strong> from free chat to VIP pages (based on real beta data).</p>
+        <p>Keeps free fans engaged until they’re ready to upgrade. Achieves <strong>10%+ conversion</strong> to VIP pages.</p>
       </div>
       <div class="feature">
         <h3>📸 Content Sales During Chat</h3>
-        <p>The AI doesn’t just talk — it sells. It promotes photos and videos mid-conversation, tuned to the fan’s mood, energy, and signals, including PPV and smart bundles.</p>
+        <p>Sells seamlessly mid-conversation — pitching content based on fan mood, energy, and signals.</p>
       </div>
       <div class="feature">
-        <h3>⚡ Automated Main-Account Detection</h3>
-        <p>If a fan subscribes to the main account, AI hands the chat over immediately — ensuring the right experience at the right moment.</p>
+        <h3>⚡ Automated Detection</h3>
+        <p>Hands chats over immediately when a fan subscribes to the main account.</p>
       </div>
       <div class="feature">
         <h3>📬 AI Nudge Messages</h3>
-        <p>Personalized nudges — sometimes text, sometimes free teasers, sometimes PPV — to activate silent fans and re-engage lapsed ones.</p>
+        <p>Personalized nudges — text, teaser, or PPV — to activate silent fans.</p>
       </div>
       <div class="feature">
         <h3>🔄 AI Follow-Ups</h3>
-        <p>When a fan doesn’t unlock or disappears, AI follows up automatically to recover the conversation and the sale.</p>
+        <p>Automatically follows up if a fan doesn’t unlock or goes quiet.</p>
       </div>
       <div class="feature">
         <h3>🎯 Smart Content Matching</h3>
-        <p>Recommends the best content for each fan to drive targeted, relevant sales without spam.</p>
+        <p>Pushes the most relevant content for each fan, driving targeted sales.</p>
       </div>
       <div class="feature">
-        <h3>⚙️ You Control Who It Talks To</h3>
-        <p>Set precise rules — for example, only engage fans who’ve spent under $50. You stay in control of who the AI chats with and when.</p>
+        <h3>⚙️ Controlled Engagement</h3>
+        <p>You set the rules — choose exactly who the AI engages with.</p>
       </div>
       <div class="feature">
-        <h3>📝 AI Fan Summary</h3>
-        <p>On handover, AI generates a concise fan summary so human chatters can continue seamlessly with full context.</p>
+        <h3>📝 Fan Summaries</h3>
+        <p>When handing over, AI generates a concise summary so chatters can continue seamlessly.</p>
       </div>
     </div>
-
-    <div class="coming">
-      <strong>Coming soon:</strong> AI Voice Notes · AI Scripts
-    </div>
+    <div class="coming"><strong>Coming soon:</strong> AI Voice Notes · AI Scripts</div>
   </section>
 
   <!-- FAQ -->
@@ -165,36 +121,33 @@
     <div class="faq-list">
       <details class="faq">
         <summary>How do I enable or disable the AI chatbot?</summary>
-        <p>Go to <em>Settings &gt; AI Chatbot Beta &gt; Feature Toggle</em>. You can turn it on or off anytime. The toggle only affects the creator list you’ve provided to us.</p>
+        <p>Go to <em>Settings &gt; AI Chatbot Beta &gt; Feature Toggle</em>. Turn it on or off anytime for the creator list you provided.</p>
       </details>
       <details class="faq">
         <summary>Will chatters know when AI is handling a chat?</summary>
-        <p>No. In Message Pro, by default, chatters will not see that AI is handling chats. This avoids disrupting their usual workflow.</p>
+        <p>No. In Message Pro, chatters won’t see when AI is handling chats, so their workflow isn’t disrupted.</p>
       </details>
       <details class="faq">
-        <summary>How do I filter AI-handled chats in Message Pro?</summary>
+        <summary>How do I filter AI-handled chats?</summary>
         <p>Use the filter <strong>“Hide chats that are being handled by AI chatbot”</strong>. Toggle it off to see all chats, including those managed by AI.</p>
       </details>
       <details class="faq">
         <summary>How can I stop AI for a specific fan?</summary>
-        <p>Inside a specific chat, click the <strong>Exit</strong> button. This immediately terminates AI for that fan and returns control to your human chatter.</p>
+        <p>Inside a chat, click the <strong>Exit</strong> button to terminate AI instantly for that fan.</p>
       </details>
       <details class="faq">
-        <summary>Where do I find the fan summary after handover?</summary>
-        <p>When AI hands over to a human, it generates a fan summary in <em>Message Pro &gt; Fan Insight &gt; Fan Note</em>. If the fan is subscribed to the VIP account, this summary is also auto-filled in the corresponding VIP account.</p>
+        <summary>Where do I find the fan summary?</summary>
+        <p>Fan summaries appear in <em>Message Pro &gt; Fan Insight &gt; Fan Note</em>. If the fan is VIP, it syncs automatically to the VIP account too.</p>
       </details>
     </div>
   </section>
 
   <footer>
-    <div class="foot">
-      <div>© <span id="year"></span> YOUR COMPANY. All rights reserved.</div>
-      <div>Privacy · Terms · Security</div>
-    </div>
+    © <span id="year"></span> YOUR COMPANY. All rights reserved.
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
