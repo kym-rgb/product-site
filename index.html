@@ -47,17 +47,61 @@
     details.faq p {margin-top:12px;color:var(--muted)}
 
     footer {border-top:1px solid rgba(255,255,255,.08);padding:40px 20px;color:var(--muted);text-align:center}
+    /* Modern nav links */
+    .nav-link {
+      position: relative;
+      padding: 8px 10px;
+      color: var(--text);
+      opacity: .9;
+      transition: opacity .15s ease;
+    }
+    .nav-link:hover { opacity: 1; }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: -6px;
+      height: 2px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .2s ease;
+      border-radius: 999px;
+    }
+    .nav-link:hover::after { transform: scaleX(1); }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,.55);
+      display: none; align-items: center; justify-content: center;
+      z-index: 100;
+      backdrop-filter: blur(2px);
+    }
+    .modal {
+      width: min(520px, 92vw);
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+    .modal h3 { margin: 0 0 8px; }
+    .modal p { margin: 0 0 16px; color: var(--muted); }
+    .modal .actions { display: flex; gap: 10px; justify-content: flex-end; }
+    .btn.ghost { background: transparent; border: 1px solid rgba(255,255,255,.12); color: var(--text); }
+
   </style>
 </head>
 <body>
   <!-- NAV -->
   <header class="nav">
     <div class="nav-inner">
-      <div class="logo"><span class="logo-dot"></span> YOUR PRODUCT</div>
+      <div class="logo"><span class="logo-dot"></span> Lustron AI</div>
       <nav class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#faq">FAQ</a>
-        <a class="btn primary" href="#features">Get Access</a>
+        <a class="nav-link" href="#features">Features</a>
+        <a class="nav-link" href="#faq">FAQ</a>
+        <a class="btn primary" id="get-access-top" href="#">Get Access</a>
       </nav>
     </div>
   </header>
@@ -80,7 +124,7 @@
       </div>
       <div class="feature">
         <h3>💎 Fan Conversion</h3>
-        <p>Keeps free fans engaged until they’re ready to upgrade. Achieves <strong>10%+ conversion</strong> to VIP pages.</p>
+        <p>Keeps free fans engaged until they’re ready to upgrade. Achieves <strong>10%+ conversion</strong> to the main pages.</p>
       </div>
       <div class="feature">
         <h3>📸 Content Sales During Chat</h3>
@@ -91,8 +135,8 @@
         <p>Hands chats over immediately when a fan subscribes to the main account.</p>
       </div>
       <div class="feature">
-        <h3>📬 AI Nudge Messages</h3>
-        <p>Personalized nudges — text, teaser, or PPV — to activate silent fans.</p>
+        <h3>📬 AI Bump Messages</h3>
+        <p>Personalized bumps — text, teaser, or PPV — to activate silent fans.</p>
       </div>
       <div class="feature">
         <h3>🔄 AI Follow-Ups</h3>
@@ -111,7 +155,7 @@
         <p>When handing over, AI generates a concise summary so chatters can continue seamlessly.</p>
       </div>
     </div>
-    <div class="coming"><strong>Coming soon:</strong> AI Voice Notes · AI Scripts</div>
+    <div class="coming"><strong>Coming soon:</strong> AI Voice Notes · AI Automated Scripts</div>
   </section>
 
   <!-- FAQ -->
@@ -122,32 +166,96 @@
       <details class="faq">
         <summary>How do I enable or disable the AI chatbot?</summary>
         <p>Go to <em>Settings &gt; AI Chatbot Beta &gt; Feature Toggle</em>. Turn it on or off anytime for the creator list you provided.</p>
+        <img src="images/feature-toggle.png" alt="Screenshot of AI chatbot toggle in settings" style="margin-top:12px;max-width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.12)">
       </details>
       <details class="faq">
-        <summary>Will chatters know when AI is handling a chat?</summary>
-        <p>No. In Message Pro, chatters won’t see when AI is handling chats, so their workflow isn’t disrupted.</p>
+        <summary>Can I enable the AI chatbot for my male or transexual creators?</summary>
+        <p>No. At this stage we only support <strong>English-speaking female creators</strong>. Support for additional creator profiles is planned for later releases.</p>
       </details>
       <details class="faq">
-        <summary>How do I filter AI-handled chats?</summary>
-        <p>Use the filter <strong>“Hide chats that are being handled by AI chatbot”</strong>. Toggle it off to see all chats, including those managed by AI.</p>
+        <summary>How can I know when AI is handling a chat?</summary>
+        <p>Yes. In Message Pro, AI-handled chats are clearly marked with icons and banners, so your team can easily tell when a conversation is being managed by AI versus a human.</p>
+        <img src="images/icon-banner.png" alt="Screenshot of AI icons and banners" style="margin-top:12px;max-width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.12)">
+      </details>
+      <details class="faq">
+        <summary>How can I see the chats that are being handled by the chatbot?</summary>
+        <p>By default, AI-handled chats are hidden in the inbox. Find the filter in Message Pro, toggle it off to see all chats, including those managed by AI.</p>
+        <div style="text-align:center; margin-top:16px;">
+          <img src="images/hide-toggle.png" 
+               alt="Screenshot of hide toggle in message pro"
+               style="max-width:300px; width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.12); box-shadow:0 2px 8px rgba(0,0,0,0.3)">
+        </div>
+      </details>
+      <details class="faq">
+        <summary>How do chatters know when they need to step in for an AI-handled chat?</summary>
+        <p>By default, AI-handled chats are hidden in Message Pro. When a fan triggers exit rules and needs human attention, the chat <strong>reappears in Message Pro</strong> with an <strong>unread red dot</strong> so your chatter knows to step in.</p>
+        <div style="text-align:center; margin-top:16px;">
+          <img src="images/hand-off-ui.png" 
+               alt="Screenshot of hand off UI in message pro"
+               style="max-width:600px; width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.12); box-shadow:0 2px 8px rgba(0,0,0,0.3)">
+        </div>
       </details>
       <details class="faq">
         <summary>How can I stop AI for a specific fan?</summary>
         <p>Inside a chat, click the <strong>Exit</strong> button to terminate AI instantly for that fan.</p>
+        <div style="text-align:center; margin-top:16px;">
+          <img src="images/deactivate.png" 
+               alt="Screenshot of activation button in message pro"
+               style="max-width:600px; width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.12); box-shadow:0 2px 8px rgba(0,0,0,0.3)">
+        </div>
+      </details>
+      
+      <details class="faq">
+        <summary>How do I prepare media for the AI chatbot?</summary>
+        <p>Create or designate a folder in <strong>Vault</strong> that contains all the media the chatbot can use. The bot will only draw from that folder.</p>
       </details>
       <details class="faq">
+        <summary>Can the bot automatically send free teasers?</summary>
+        <p>Yes. Just place your free teaser files in the designated AI folder. Leave the <strong>suggested price field empty</strong> — that way the system knows it’s a free teaser, not PPV content.</p>
+      </details>
+      <details class="faq">
+        <summary>Can I set up bundles?</summary>
+        <p>Yes. Add a note to each file like <strong>“bundle 1”</strong> (or 2, 3, etc.) so we know which media belongs together. You can create as many bundles as you need.</p>
+      </details>
+      
+      <details class="faq">
         <summary>Where do I find the fan summary?</summary>
-        <p>Fan summaries appear in <em>Message Pro &gt; Fan Insight &gt; Fan Note</em>. If the fan is VIP, it syncs automatically to the VIP account too.</p>
+        <p>Fan summaries appear in <em>Message Pro &gt; Fan Insight &gt; Fan Note</em>. If the fan subscribes to the main page, it syncs automatically to the main account too.</p>
       </details>
     </div>
   </section>
 
   <footer>
-    © <span id="year"></span> YOUR COMPANY. All rights reserved.
+    © <span id="year"></span> Lustron AI. All rights reserved.
   </footer>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Access Modal -->
+  <div class="modal-backdrop" id="access-modal">
+    <div class="modal">
+      <h3>Get Access</h3>
+      <p>Please contact your <strong>Customer Success Manager (CSM)</strong> to enable the AI Chatbot Beta for your account.</p>
+      <div class="actions">
+        <button class="btn ghost" id="close-modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const openers = [document.getElementById('get-access'), document.getElementById('get-access-top')].filter(Boolean);
+      const modal = document.getElementById('access-modal');
+      const closeBtn = document.getElementById('close-modal');
+      function open(e){ if(e) e.preventDefault(); modal.style.display='flex'; }
+      function close(){ modal.style.display='none'; }
+      openers.forEach(btn => btn.addEventListener('click', open));
+      closeBtn.addEventListener('click', close);
+      modal.addEventListener('click', function(e){ if(e.target === modal) close(); });
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+    })();
   </script>
 </body>
 </html>
