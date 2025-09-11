@@ -7,6 +7,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
+      --bg: #0a0b0f;
+      --panel: #0f1218;
+      --panel-2: #0c0f14;
+      --text: #eef2ff;
+      --muted: #9aa3b2;
+      --brand: #7c5cff;
+      --brand-2: #22d3ee;
+      --accent: #6ee7b7;
+      --ring: rgba(124,92,255,0.35);
+      --radius: 20px;
+      --shadow: 0 18px 40px rgba(0,0,0,.45);
       --bg: #0c0f14;
       --panel: #11161c;
       --text: #e6e9ef;
@@ -50,6 +61,13 @@
     /* Modern nav links */
     .nav-link {
       position: relative;
+      padding: 10px 12px;
+      color: var(--text);
+      opacity: .85;
+      transition: opacity .15s ease, transform .15s ease;
+      border-radius: 10px;
+    }
+      position: relative;
       padding: 8px 10px;
       color: var(--text);
       opacity: .9;
@@ -91,6 +109,52 @@
     .modal .actions { display: flex; gap: 10px; justify-content: flex-end; }
     .btn.ghost { background: transparent; border: 1px solid rgba(255,255,255,.12); color: var(--text); }
 
+
+    /* Infloww-inspired polish */
+    h1, h2 { letter-spacing: -0.02em; }
+    .gradient-text { 
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .divider {
+      height: 1px;
+      margin: 28px auto;
+      width: min(1100px, 92vw);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+    }
+    .btn.primary {
+      position: relative;
+      overflow: hidden;
+      transition: transform .15s ease;
+    }
+    .btn.primary:hover { transform: translateY(-2px); }
+    .btn.primary::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      opacity: .25; filter: blur(24px);
+    }
+    .feature {
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: var(--shadow);
+    }
+    .hero h1 { font-size: 52px; }
+    .hero p { font-size: 20px; }
+    .hero .tagline {
+      color: var(--muted);
+      max-width: 70ch;
+      margin: 10px auto 0;
+    }
+    .badge {
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;border-radius:999px;
+      background: rgba(124,92,255,.14);
+      border: 1px solid rgba(124,92,255,.28);
+      color:#dcd4ff;font-weight:700;font-size:12px;
+    }
+
   </style>
 </head>
 <body>
@@ -124,14 +188,19 @@
 
   <!-- HERO -->
   <section class="hero">
-    <h1>AI Chatbot Beta</h1>
-    <p>Engage, convert, and sell — with seamless handovers to your team when needed.</p>
-    <a class="btn primary" href="#features">Explore Features</a>
+    <span class="badge">AI Chatbot Beta</span>
+    <h1><span class="gradient-text">Convert more fans — automatically</span></h1>
+    <p class="tagline">Chats like your best rep: builds relationships, sells the right content at the right moment, and hands off to humans with full context.</p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:18px;">
+      <a class="btn primary" id="get-access-top" href="#">Get Access</a>
+      <a class="btn" href="#features" style="background:var(--panel);border:1px solid rgba(255,255,255,.12);color:var(--text)">See Features</a>
+    </div>
   </section>
+  <div class="divider"></div>
 
   <!-- FEATURES -->
   <section id="features" class="section">
-    <h2>Features</h2>
+    <h2 class="gradient-text">Features</h2>
     <p class="lead-sub">Focused on fan conversion, sales, and full control.</p>
     <div class="features">
       <div class="feature">
@@ -176,7 +245,7 @@
 
   <!-- FAQ -->
   <section id="faq" class="section">
-    <h2>FAQs</h2>
+    <h2 class="gradient-text">FAQs</h2>
     <p class="lead-sub">Common onboarding questions, answered.</p>
     <div class="faq-list">
       <details class="faq">
