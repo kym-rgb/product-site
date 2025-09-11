@@ -181,7 +181,7 @@
       <nav class="nav-links">
         <a class="nav-link" href="#features">Features</a>
         <a class="nav-link" href="#faq">FAQ</a>
-        <a class="btn primary" id="get-access-top" href="#">Get Access</a>
+        <a class="btn primary js-get-access" id="get-access-nav" href="#">Get Access</a>
       </nav>
     </div>
   </header>
@@ -192,7 +192,7 @@
     <h1><span class="gradient-text">Convert more fans — automatically</span></h1>
     <p class="tagline">Chats like your best rep: builds relationships, sells the right content at the right moment, and hands off to humans with full context.</p>
     <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:18px;">
-      <a class="btn primary" id="get-access-top" href="#">Get Access</a>
+      <a class="btn primary js-get-access" id="get-access-nav" href="#">Get Access</a>
       <a class="btn" href="#features" style="background:var(--panel);border:1px solid rgba(255,255,255,.12);color:var(--text)">See Features</a>
     </div>
   </section>
@@ -331,7 +331,7 @@
 
   <script>
     (function(){
-      const openers = [document.getElementById('get-access'), document.getElementById('get-access-top')].filter(Boolean);
+      const openers = document.querySelectorAll('.js-get-access, #get-access, #get-access-top, #get-access-nav, #get-access-hero');
       const modal = document.getElementById('access-modal');
       const closeBtn = document.getElementById('close-modal');
       function open(e){ if(e) e.preventDefault(); modal.style.display='flex'; }
