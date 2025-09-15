@@ -159,21 +159,6 @@
 </head>
 <body>
 
-  <script>
-    (function() {
-      const PASSWORD = "delta2005"; // <-- change this to your password
-      const entered = sessionStorage.getItem("betaAccess");
-      if (entered !== PASSWORD) {
-        const input = prompt("This site is private. Please enter the access password:");
-        if (input !== PASSWORD) {
-          document.write("<h1 style='text-align:center;margin-top:20%'>Access denied.</h1>");
-        } else {
-          sessionStorage.setItem("betaAccess", PASSWORD);
-        }
-      }
-    })();
-  </script>
-
   <!-- NAV -->
   <header class="nav">
     <div class="nav-inner">
